@@ -5,6 +5,7 @@
 //  Created by Denny Arfansyah on 11/02/23.
 //
 
+import CodeScanner
 import SwiftUI
 
 struct ProspectsView: View {
@@ -12,6 +13,7 @@ struct ProspectsView: View {
         case none, contacted, uncontacted
     }
     @EnvironmentObject var prospects: Prospects
+    @State private var isShowingScanner = false
     let fitlerType: FilterType
     
     var title: String {
@@ -35,19 +37,36 @@ struct ProspectsView: View {
                         Text(prospect.emailAddress)
                             .foregroundColor(.secondary)
                     }
-                }
-            }
-                .navigationTitle(title)
-                .toolbar {
-                    Button {
-                        let prospect = Prospect()
-                        prospect.name = "Denny Arfansyah"
-                        prospect.emailAddress = "denny@gmail.com"
-                        prospects.people.append(prospect)
-                    } label: {
-                        Label("Save", systemImage: "qrcode.viewfinder")
+                    .swipeActions {
+                        if prospect.isContacted {
+                            Button {
+                                prospects.toogle(prospect)
+                            } label: {
+                                Label("Mark Uncontacted", systemImage: "person.crop.circle.badge.xmark")
+                            }
+                            .tint(.blue)
+                        } else {
+                            Button {
+                                prospects.toogle(prospect)
+                            } label: {
+                                Label("Mark contacted", systemImage: "person.crop.circle.fill.badge.checkmark")
+                            }
+                            .tint(.green)
+                        }
                     }
                 }
+            }
+            .navigationTitle(title)
+            .toolbar {
+                Button {
+                    isShowingScanner.toggle()
+                } label: {
+                    Label("Save", systemImage: "qrcode.viewfinder")
+                }
+            }
+            .sheet(isPresented: $isShowingScanner) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Denny Arfansyah\narfansyahdeny@gmail.com", completion: handleScanner)
+            }
         }
     }
     
@@ -59,6 +78,24 @@ struct ProspectsView: View {
             return prospects.people.filter { $0.isContacted }
         case .uncontacted:
             return prospects.people.filter { !$0.isContacted }
+        }
+    }
+    
+    func handleScanner(result: Result<ScanResult, ScanError>) {
+        isShowingScanner = false
+        
+        switch result {
+        case .success(let result):
+            let details = result.string.components(separatedBy: "\n")
+            guard details.count == 2 else { return }
+            
+            let person = Prospect()
+            person.name = details[0]
+            person.emailAddress = details[1]
+            
+            prospects.people.append(person)
+        case .failure(let error):
+            print("Failed: \(error.localizedDescription)")
         }
     }
     
