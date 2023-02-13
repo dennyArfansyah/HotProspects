@@ -17,6 +17,7 @@
 		3748E3F92997930F005A1518 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748E3F82997930F005A1518 /* MeView.swift */; };
 		3748E3FB299795AB005A1518 /* Prospects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748E3FA299795AB005A1518 /* Prospects.swift */; };
 		3748E3FE29979FB6005A1518 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 3748E3FD29979FB6005A1518 /* CodeScanner */; };
+		3748E4002999F979005A1518 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3748E3FF2999F979005A1518 /* ImageSaver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		3748E3F629979303005A1518 /* ProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectsView.swift; sourceTree = "<group>"; };
 		3748E3F82997930F005A1518 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		3748E3FA299795AB005A1518 /* Prospects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospects.swift; sourceTree = "<group>"; };
+		3748E3FF2999F979005A1518 /* ImageSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				3748E3F629979303005A1518 /* ProspectsView.swift */,
 				3748E3F82997930F005A1518 /* MeView.swift */,
 				3748E3FA299795AB005A1518 /* Prospects.swift */,
+				3748E3FF2999F979005A1518 /* ImageSaver.swift */,
 			);
 			path = Part4;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				3748E3F729979303005A1518 /* ProspectsView.swift in Sources */,
 				3748E3F42996455C005A1518 /* ImageInterpolation.swift in Sources */,
 				3748E3DF29955608005A1518 /* HotProspectsApp.swift in Sources */,
+				3748E4002999F979005A1518 /* ImageSaver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +311,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to save your QR codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -337,6 +342,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to save your QR codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
